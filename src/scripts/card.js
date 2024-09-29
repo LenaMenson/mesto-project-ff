@@ -1,10 +1,4 @@
-import { initialCards } from './cards.js';
-import { openPopup } from './modal.js';
-import { closePopup } from './modal.js';
 import { cardTemplate } from './index.js';
-import { zoomPopupImage } from './index.js';
-import {popupImage } from './index.js';
-import { cardData } from './index.js';
 
 // @todo: Функция создания карточки
 export function createCard(cardData, deleteCard, zoomPopupImage, likeCard) {
@@ -16,7 +10,7 @@ export function createCard(cardData, deleteCard, zoomPopupImage, likeCard) {
   deleteButton.addEventListener("click", deleteCard);
   const image = cardElement.querySelector(".card__image");
   image.addEventListener("click", (event) => {
-  zoomPopupImage(cardData.name, cardData.link, openPopup(popupImage));
+  zoomPopupImage(cardData.name, cardData.link, cardData.name);
 });
   const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", likeCard);
