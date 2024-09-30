@@ -42,10 +42,10 @@ closePopupButton.forEach ((closeElement) => {
   });
 
 // @todo: попап - функция просмотра изображения карточки
-export function zoomPopupImage (name, link, text) {
+export function zoomPopupImage (name, link) {
 document.querySelector(".popup__image").alt = name;
 document.querySelector(".popup__image").src = link;
-document.querySelector(".popup__caption").textContent = text;
+document.querySelector(".popup__caption").textContent = name;
 openPopup(popupImage)
 };
   
@@ -72,6 +72,8 @@ popupNewCard.addEventListener('submit', newPlaceForm);
 //слушатель для открытия попапа редактирования профиля  
 profileEditButton.addEventListener('click', function () {
     openPopup(popupTypeEdit);
+    nameInput.value= document.querySelector(".profile__title").textContent;
+    jobInput.value = document.querySelector(".profile__description").textContent;
 });
 
 //отправка формы редактирования профиля ()

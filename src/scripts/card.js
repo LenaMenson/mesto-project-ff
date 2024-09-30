@@ -10,7 +10,7 @@ export function createCard(cardData, deleteCard, zoomPopupImage, likeCard) {
   deleteButton.addEventListener("click", deleteCard);
   const image = cardElement.querySelector(".card__image");
   image.addEventListener("click", (event) => {
-  zoomPopupImage(cardData.name, cardData.link, cardData.name);
+  zoomPopupImage(cardData.name, cardData.link);
 });
   const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", likeCard);
