@@ -6,11 +6,14 @@ const config = {
   }
 };
 
-const handleResponse = (res) => {
+
+const handleResponse = (res, errorText) => { 
   if (res.ok) {
-    return res.json();
-}
+      return res.json();
+  }
+    return Promise.reject(`${errorText}: ${res.status}`);
 };
+
 
 
 export const getInitialCards = () => {
@@ -18,21 +21,17 @@ export const getInitialCards = () => {
     method: "GET",
     headers: config.headers
   })
-    .then(handleResponse);
-      // если ошибка, отклоняем промис
-      return Promise.reject(`карточки не загрузились: ${res.status}`);
-    };  
+    .then(handleResponse)
+};  
 
     // метод отправки созданной карточки на сервер
-export const addNewCard = (cardData) => {
+export const addNewCard = (newCardData) => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "POST",
     headers: config.headers,
-    body: JSON.stringify(cardData)
+    body: JSON.stringify(newCardData)
   })
-    .then(handleResponse);
-      // если ошибка, отклоняем промис
-      return Promise.reject(`моя карточка не выгрузилась: ${res.status}`);
+    .then(handleResponse)
 };
 
 // Метод получения данных пользователя с сервера
@@ -42,9 +41,7 @@ export const getUserData = () => {
     headers: config.headers
     // По умолчанию fetch — это GET, можно не указывать
   })
-  .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`данные автора не загрузились: ${res.status}`);
+  .then(handleResponse)
 };
 
 //Метод отправки данных пользователя на сервер
@@ -55,8 +52,6 @@ export const sendUserData = (profileName, profileDescription) => {
     body: JSON.stringify({ name: profileName, about: profileDescription })
   })
   .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`данныее пользователя не ушли: ${res.status}`);
 };
 
 // Метод отправки лайка на сервер
@@ -65,9 +60,7 @@ export const putCardLike = (cardId) => {
     headers: config.headers,
     method: 'PUT',
   })
-  .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`лайк не поставился: ${res.status}`);
+  .then(handleResponse)
 };
 
 // Метод удаления лайка с сервера
@@ -76,9 +69,7 @@ export const deleteCardLike = (cardId) => {
     headers: config.headers,
     method: 'DELETE',
   })
-  .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`лайк не удалился: ${res.status}`);
+  .then(handleResponse)
 };
 
 // Метод отправки данных о новом аватаре на сервер!
@@ -88,9 +79,7 @@ export const sendAvatarData = (avatarLink) => {
     method: 'PATCH',
     body: JSON.stringify({ avatar: avatarLink })
   })
-  .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`новый аватар не ушел на сервер: ${res.status}`);
+  .then(handleResponse)
 };
 
 //Метод удаления карточки с сервера!
@@ -99,7 +88,5 @@ export const deleteCardApi = (cardId) => {
     headers: config.headers,
     method: 'DELETE',
   })
-  .then(handleResponse);
-  // если ошибка, отклоняем промис
-  return Promise.reject(`карточка не удалилась: ${res.status}`);
+  .then(handleResponse)
 };

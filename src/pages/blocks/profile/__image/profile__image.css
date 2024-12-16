@@ -16,11 +16,12 @@
 /*стили для обновления аватара*/
 .profile__image:hover {
   cursor: pointer;
-   opacity: 0.6;
+   opacity: 0.8;
    transition: 0.3s;
  }
  
- .profile__image::before {
+ .profile__image:hover::before {
+   opacity: 1;
    content: '';
    position: absolute;
    top: 50%;
@@ -29,13 +30,7 @@
    height: 100%;
    background-size: 26px 26px;
    transform: translate(-50%, -50%);
-   opacity: 0;
    background: transparent url("../../../images/edit-icon.svg") center no-repeat;
- }
- 
- .profile__image:hover::before {
-   opacity: 1;
-   transition: 0.3s;
  }
 
 @media screen and (max-width: 740px) {
