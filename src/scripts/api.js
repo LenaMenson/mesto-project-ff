@@ -21,7 +21,7 @@ export const getInitialCards = () => {
     method: "GET",
     headers: config.headers
   })
-    .then(handleResponse)
+  .then(res => handleResponse(res, 'карточки не загрузились'))
 };  
 
     // метод отправки созданной карточки на сервер
@@ -31,7 +31,7 @@ export const addNewCard = (newCardData) => {
     headers: config.headers,
     body: JSON.stringify(newCardData)
   })
-    .then(handleResponse)
+  .then(res => handleResponse(res, 'карточка не добавилась'))
 };
 
 // Метод получения данных пользователя с сервера
@@ -39,9 +39,8 @@ export const getUserData = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
     headers: config.headers
-    // По умолчанию fetch — это GET, можно не указывать
   })
-  .then(handleResponse)
+  .then(res => handleResponse(res, 'данные пользователя не поступили'))
 };
 
 //Метод отправки данных пользователя на сервер
@@ -51,7 +50,7 @@ export const sendUserData = (profileName, profileDescription) => {
     headers: config.headers,
     body: JSON.stringify({ name: profileName, about: profileDescription })
   })
-  .then(handleResponse);
+  .then(res => handleResponse(res, 'данные пользователя не отправились'))
 };
 
 // Метод отправки лайка на сервер
@@ -60,7 +59,7 @@ export const putCardLike = (cardId) => {
     headers: config.headers,
     method: 'PUT',
   })
-  .then(handleResponse)
+  .then(res => handleResponse(res, 'лайк не поставился'))
 };
 
 // Метод удаления лайка с сервера
@@ -69,7 +68,7 @@ export const deleteCardLike = (cardId) => {
     headers: config.headers,
     method: 'DELETE',
   })
-  .then(handleResponse)
+  .then(res => handleResponse(res, 'лайк не удалился'))
 };
 
 // Метод отправки данных о новом аватаре на сервер!
@@ -79,7 +78,7 @@ export const sendAvatarData = (avatarLink) => {
     method: 'PATCH',
     body: JSON.stringify({ avatar: avatarLink })
   })
-  .then(handleResponse)
+  .then(res => handleResponse(res, 'аватар не отправился'))
 };
 
 //Метод удаления карточки с сервера!
@@ -88,5 +87,5 @@ export const deleteCardApi = (cardId) => {
     headers: config.headers,
     method: 'DELETE',
   })
-  .then(handleResponse)
+  .then(res => handleResponse(res, 'карточка не удалилась'))
 };

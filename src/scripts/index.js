@@ -80,7 +80,8 @@ function newCardForm (evt) {
   const newCardData = {
     name: newPlaceNameInput.value, 
     link: newPlaceUrlInput.value
-  }
+  };
+  submitNewPlaceButton.textContent = 'Сохранение...';
   addNewCard(newCardData)
     .then((card) => {
       const newCardElement = createCard(card, zoomPopupImage, likeCard, deleteCard, userId);
@@ -92,7 +93,7 @@ function newCardForm (evt) {
       error.textContent = err;
     })
     .finally(() => {
-      submitNewPlaceButton.textContent = 'Сохранение...';
+      submitNewPlaceButton.textContent = 'Сохранить';
     });  
 formElementEditProfile.reset();
 };
@@ -121,6 +122,7 @@ profileEditButton.addEventListener('click', function () {
 //отправка формы редактирования профиля
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
+  submitProfileButton.textContent = 'Сохранение...';
   sendUserData(nameInput.value, jobInput.value)
     .then(() => { 
       getUserData()
@@ -133,7 +135,7 @@ function handleFormProfileSubmit(evt) {
       error.textContent = err;
     })
     .finally(() => {
-      submitProfileButton.textContent = 'Сохранение...';
+      submitProfileButton.textContent = 'Сохранить';
     });
   formElementEditProfile.reset();
 };
@@ -150,6 +152,7 @@ avatarEditButton.addEventListener('click', function () {
 //функция обновления аватара
 function handleFormAvatarSubmit(evt) {
   evt.preventDefault();
+  submitAvatarButton.textContent = 'Сохранение...';
   //отправка нового аватара на сервер
   sendAvatarData(avatarInput.value)
     .then(() => {
@@ -163,7 +166,7 @@ function handleFormAvatarSubmit(evt) {
       error.textContent = err;
     })
     .finally(() => {
-      submitAvatarButton.textContent = 'Сохранение...';
+      submitAvatarButton.textContent = 'Сохранить';
     });
   avatarEditProfile.reset();
 };
